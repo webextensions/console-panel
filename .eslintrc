@@ -1,0 +1,27 @@
+{
+    // http://eslint.org/docs/user-guide/configuring.html
+    // https://gist.github.com/cletusw/e01a85e399ab563b1236
+    "parserOptions": {
+        "sourceType": "module",                     // https://github.com/AtomLinter/linter-eslint/issues/462#issuecomment-190770417
+        "ecmaVersion": 8,
+        "ecmaFeatures": {                           // http://eslint.org/docs/user-guide/migrating-to-2.0.0#language-options
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": false,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "plugins": [],
+    "rules": {
+        "indent": [ "error", 4, {"SwitchCase": 1} ],
+        "linebreak-style": [ "error", "unix" ],
+        "no-console": "off",
+        "no-debugger": "off",
+        "no-shadow": "off",
+        "quotes": "off",                            // http://eslint.org/docs/rules/quotes
+        "semi": [ "error", "always" ]
+    }
+}

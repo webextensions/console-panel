@@ -1,0 +1,54 @@
+{
+  "name": "console-panel",
+  "version": "0.0.0",
+  "description": "A console panel in webpage to help 3 use-cases: show console message automatically ; debug mobile ; debug IE/Edge",
+  "main": "src/console-panel.js",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webextensions/console-panel.git"
+  },
+  "keywords": [
+    "console",
+    "panel",
+    "web",
+    "page",
+    "webpage",
+    "site",
+    "website",
+    "help",
+    "show",
+    "message",
+    "info",
+    "warning",
+    "error",
+    "automatically",
+    "notify",
+    "notification",
+    "debug",
+    "mobile",
+    "tablet",
+    "Android",
+    "iPhone",
+    "iPad",
+    "device",
+    "Microsoft",
+    "IE",
+    "Internet",
+    "Explorer",
+    "Edge",
+    "EdgeHTML"
+  ],
+  "author": "Priyank Parashar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webextensions/console-panel/issues"
+  },
+  "homepage": "https://github.com/webextensions/console-panel#readme",
+  "devDependencies": {
+    "eslint": "^5.10.0"
+  }
+}

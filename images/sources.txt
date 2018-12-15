@@ -1,0 +1,12 @@
+logo-firefox_edited.png
+    Slightly edited version of /usr/lib/firefox/browser/icons/mozicon128.png
+    See: https://support.mozilla.org/en-US/questions/943506
+
+logo-google-chrome.svg
+    https://upload.wikimedia.org/wikipedia/commons/e/e2/Google_Chrome_icon_%282011%29.svg
+
+logo-microsoft-edge.svg
+    https://upload.wikimedia.org/wikipedia/commons/d/d6/Microsoft_Edge_logo.svg
+
+logo-opera.svg
+    https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg

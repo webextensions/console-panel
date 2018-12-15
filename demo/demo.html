@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+    <!--
+        To view the live demo, go to:
+        https://raw.githack.com/webextensions/console-panel/master/demo/demo.html
+    -->
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>console-panel demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Optional: Required for resizing panel height -->
+            <!-- https://jquery.com/ -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+            <!-- Approach 1: Use jquery-resizable plugin -->
+                <!-- https://github.com/RickStrahl/jquery-resizable -->
+                <script src="https://raw.githack.com/RickStrahl/jquery-resizable/7fe305c46e8e4eaebcceecea928cb2992bf34551/dist/jquery-resizable.js"></script>
+
+            <!-- Approach 2: Use jQuery UI -->
+                <!-- https://jqueryui.com/ -->
+                <!-- <link  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" /> -->
+                <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+
+                    <!-- Optional: Required for better support of touch devices for jQuery UI -->
+                        <!-- https://github.com/furf/jquery-ui-touch-punch -->
+                        <!-- <script src="https://raw.githack.com/furf/jquery-ui-touch-punch/4bc009145202d9c7483ba85f3a236a8f3470354d/jquery.ui.touch-punch.min.js"></script> -->
+
+
+        <!-- Optional: Required for logging arrays and objects -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/native-promise-only/0.8.1/npo.js"></script> <!-- Not required for modern browsers -->
+            <link  href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.26.2/jsoneditor.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.26.2/jsoneditor-minimalist.min.js"></script>
+
+        <!-- Optional: Required for logging DOM elements with syntax highlighting -->
+            <link  href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism.min.css" rel="stylesheet" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js" data-manual></script>
+
+        <!-- Required: Code for console-panel -->
+        <link  href="../src/console-panel.css" rel="stylesheet" />
+        <script src="../src/console-panel.js"></script>
+        <script>
+            var ready = function (cb) {
+                if (document.readyState !== 'loading') {
+                    cb();
+                } else {
+                    document.addEventListener('DOMContentLoaded', cb);
+                }
+            };
+            ready(function () {
+                consolePanel.enable();
+            });
+        </script>
+
+        <style>
+            * {
+                font-family: sans-serif;
+            }
+
+            .button-container {
+                margin-bottom: 5px;
+            }
+
+            #span-running {
+                animation: running-demo 1.6s ease-in infinite;
+            }
+            @keyframes running-demo {
+                50% {
+                    color: #ddd;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>
+            console-panel demo
+            <span style="font-size:14px">
+                (<a target="_blank" href="https://github.com/webextensions/console-panel/blob/master/demo/demo.html">Source code for this page</a>)
+                (<a target="_blank" href="https://github.com/webextensions/console-panel">GitHub repository</a>)
+            </span>
+        </h1>
+        <div class="button-container"><button id="console-clear">console.clear();</button></div>
+        <div class="button-container"><button id="console-log-string-log">console.log('log');</button></div>
+        <div class="button-container"><button id="console-info-string-info">console.info('info');</button></div>
+        <div class="button-container"><button id="console-warn-string-warn">console.warn('warn');</button></div>
+        <div class="button-container"><button id="console-error-string-error">console.error('error');</button></div>
+        <div class="button-container"><button id="console-log-object-sample">console.log(object);</button></div>
+        <div class="button-container"><button id="console-log-document-location">console.log(document.location);</button></div>
+        <div class="button-container"><button id="console-log-document-head">console.log(document.head);</button></div>
+        <div class="button-container"><button id="console-log-throw-error">throw new Error('This is a dummy error');</button></div>
+
+        <br />
+        <div class="button-container"><button id="run-all" style="font-weight:bold;">Run all of the above</button><span id="span-running" style="display:none;"> (Running)</span></div>
+
+        <script>
+            (function () {
+                var timeouts = [];
+
+                var clearTimeouts = function () {
+                    while(timeouts.length) {
+                        var timeoutEntry = timeouts.pop();
+                        clearTimeout(timeoutEntry);
+                    }
+                    document.getElementById('span-running').style.display = 'none';
+                };
+
+                // Sample JSON code from https://json.org/example.html
+                var ob = {
+                    "glossary": {
+                        "title": "example glossary",
+                        "GlossDiv": {
+                            "title": "S",
+                            "GlossList": {
+                                "GlossEntry": {
+                                    "ID": "SGML",
+                                    "SortAs": "SGML",
+                                    "GlossTerm": "Standard Generalized Markup Language",
+                                    "Acronym": "SGML",
+                                    "Abbrev": "ISO 8879:1986",
+                                    "GlossDef": {
+                                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                                        "GlossSeeAlso": ["GML", "XML"]
+                                    },
+                                    "GlossSee": "markup"
+                                }
+                            }
+                        }
+                    }
+                };
+
+                var runConsoleClear               = function () { console.clear();                          },
+                    runConsoleLog                 = function () { console.log('log');                       },
+                    runConsoleInfo                = function () { console.info('info');                     },
+                    runConsoleWarn                = function () { console.warn('warn');                     },
+                    runConsoleError               = function () { console.error('error');                   },
+                    runConsoleLogObject           = function () { console.log(ob);                          },
+                    runConsoleLogDocumentLocation = function () { console.log(document.location);           },
+                    runConsoleLogDocumentHead     = function () { console.log(document.head);               },
+                    runConsoleThrowDummyError     = function () { throw new Error('This is a dummy error'); };
+
+                var showRunningMessage = function () {
+                    document.getElementById('span-running').style.display = '';
+                };
+                var hideRunningMessage = function () {
+                    document.getElementById('span-running').style.display = 'none';
+                };
+
+                window.timedDemo = function (delayedStart) {
+                    delayedStart = delayedStart || 0;
+                    timeouts.push(setTimeout(showRunningMessage,            delayedStart +    0)); // vvvv These calls would have same timer duration
+                    timeouts.push(setTimeout(runConsoleClear,               delayedStart +    0)); // ^^^^ These calls would have same timer duration
+                    timeouts.push(setTimeout(runConsoleLog,                 delayedStart + 1000));
+                    timeouts.push(setTimeout(runConsoleInfo,                delayedStart + 2000));
+                    timeouts.push(setTimeout(runConsoleWarn,                delayedStart + 3000));
+                    timeouts.push(setTimeout(runConsoleError,               delayedStart + 4000));
+                    timeouts.push(setTimeout(runConsoleLogObject,           delayedStart + 5000));
+                    timeouts.push(setTimeout(runConsoleLogDocumentLocation, delayedStart + 6000));
+                    timeouts.push(setTimeout(runConsoleLogDocumentHead,     delayedStart + 7000));
+                    timeouts.push(setTimeout(runConsoleThrowDummyError,     delayedStart + 8000)); // vvvv These calls would have same timer duration
+                    timeouts.push(setTimeout(hideRunningMessage,            delayedStart + 8000)); // ^^^^ These calls would have same timer duration
+                };
+                window.timedDemo(1000); // Slightly delayed start for the initial demo
+
+                var runClickHandlerForElementById = function (id, cb) {
+                    document.getElementById(id).addEventListener('click', function () {
+                        clearTimeouts();
+                        cb();
+                    });
+                };
+
+                runClickHandlerForElementById('console-clear',                 runConsoleClear              );
+                runClickHandlerForElementById('console-log-string-log',        runConsoleLog                );
+                runClickHandlerForElementById('console-info-string-info',      runConsoleInfo               );
+                runClickHandlerForElementById('console-warn-string-warn',      runConsoleWarn               );
+                runClickHandlerForElementById('console-error-string-error',    runConsoleError              );
+                runClickHandlerForElementById('console-log-object-sample',     runConsoleLogObject          );
+                runClickHandlerForElementById('console-log-document-location', runConsoleLogDocumentLocation);
+                runClickHandlerForElementById('console-log-document-head',     runConsoleLogDocumentHead    );
+                runClickHandlerForElementById('console-log-throw-error',       runConsoleThrowDummyError    );
+
+                runClickHandlerForElementById('run-all', function () {
+                    window.timedDemo();
+                    showRunningMessage();
+                });
+            }());
+        </script>
+    </body>
+
+</html>
