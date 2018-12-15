@@ -264,13 +264,17 @@ If you wish to deactivate console-panel, run `consolePanel.disable()`. It will r
 
 # Browser support
 
-<img width="32" alt="Google Chrome"   src="images/logo-google-chrome.svg" > Google Chrome
+<!--
+https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-markdown/16462143#16462143
+-->
 
-<img width="32" alt="Microsoft Edge"  src="images/logo-microsoft-edge.svg"> Microsoft Edge (and Internet Explorer)
+<img width="32" alt="Google Chrome"   src="images/logo-google-chrome.svg?sanitize=true" > Google Chrome
 
-<img width="32" alt="Mozilla Firefox" src="images/logo-firefox_edited.png"> Mozilla Firefox
+<img width="32" alt="Microsoft Edge"  src="images/logo-microsoft-edge.svg?sanitize=true"> Microsoft Edge (and Internet Explorer)
 
-<img width="32" alt="Opera"           src="images/logo-opera.svg"         > Opera
+<img width="32" alt="Mozilla Firefox" src="images/logo-firefox_edited.png"              > Mozilla Firefox
+
+<img width="32" alt="Opera"           src="images/logo-opera.svg?sanitize=true"         > Opera
 
 # Limitations / notable behavior
 
