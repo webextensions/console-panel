@@ -1,6 +1,6 @@
 {
   "name": "console-panel",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A console panel in webpage to help 3 use-cases: show console message automatically ; debug mobile ; debug IE/Edge",
   "main": "src/console-panel.js",
   "scripts": {
