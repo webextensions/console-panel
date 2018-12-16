@@ -240,6 +240,7 @@
 }
 
 #console-panel .dev-tools-console {
+    clear: both;
     overflow: auto;
     height: calc(100% - 31px);
 }
