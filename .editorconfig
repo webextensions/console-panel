@@ -1,3 +1,7 @@
+# This file is provided by the package "node-editorconfig":
+#     https://github.com/webextensions/node-editorconfig
+#     https://www.npmjs.com/package/node-editorconfig
+#
 # References:
 #     http://editorconfig.org/ (Official Site)
 #     http://editorconfig.org/#download (Plugins)
@@ -15,7 +19,7 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[.nvmrc]
+[{.nvmrc,*.svg}]
 insert_final_newline = false
 
 [Makefile]
