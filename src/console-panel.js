@@ -280,6 +280,27 @@
             }
             updateDevToolsStatus();
         });
+
+        // var shortcut = {
+        //     shiftKey: true,
+        //     code: 'F12'
+        // };
+        // document.onkeyup = function (e) {
+        //     var allMatches = true;
+        //     Object.keys(shortcut).forEach(function (key) {
+        //         if (e[key] !== shortcut[key]) {
+        //             allMatches = false;
+        //         }
+        //     });
+
+        //     if (allMatches) {
+        //         // console.log('You pressed ', shortcut);
+                
+        //         e.preventDefault();
+
+        //         that.showDevToolsIconContainer();
+        //     }
+        // };
     })(moduleGlobal);
 
     var ready = function (cb) {
@@ -1271,6 +1292,29 @@
                 }
             });
             moduleGlobal.updateDevToolsStatus();  // Ensure that the 'console-panel-devtoolschange' event gets fired once (if required)
+
+
+            var shortcut = {
+                shiftKey: true,
+                code: 'F12'
+            };
+            document.addEventListener('keyup', function (e) {
+                if (shortcut) {
+                    var allMatches = true;
+                    Object.keys(shortcut).forEach(function (key) {
+                        if (e[key] !== shortcut[key]) {
+                            allMatches = false;
+                        }
+                    });
+        
+                    if (allMatches) {
+                        e.preventDefault();
+        
+                        that.enable(that.config);
+                        that.showDevToolsIconContainer();
+                    }
+                }
+            });
         };
 
         /*
