@@ -49,6 +49,6 @@
   },
   "homepage": "https://github.com/webextensions/console-panel#readme",
   "devDependencies": {
-    "eslint": "^5.10.0"
+    "eslint": "^5.16.0"
   }
 }
