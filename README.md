@@ -339,9 +339,9 @@ https://stackoverflow.com/questions/13808020/include-an-svg-hosted-on-github-in-
 
 * Priyank Parashar - [GitHub](https://github.com/paras20xx) | [Twitter](https://twitter.com/paras20xx) | [LinkedIn](https://linkedin.com/in/ParasharPriyank/)
 
-## Connect to us
+## Connect with us
 
-* https://webextensions.org/
+* https://www.webextensions.org/
 * [GitHub](https://github.com/webextensions/live-css-editor)
 * [Twitter](https://twitter.com/webextensions)
 
