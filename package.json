@@ -34,13 +34,7 @@
     "Android",
     "iPhone",
     "iPad",
-    "device",
-    "Microsoft",
-    "IE",
-    "Internet",
-    "Explorer",
-    "Edge",
-    "EdgeHTML"
+    "device"
   ],
   "author": "Priyank Parashar",
   "license": "MIT",
